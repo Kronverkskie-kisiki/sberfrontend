@@ -22,3 +22,8 @@ type DoubtError<T> = {
 }
 
 export type Doubtful<T> = DoubtOk<T> | DoubtWarn<T> | DoubtError<T>;
+export enum MaritalStatus {
+  MARRIED = 'MARRIED', // Женат/замужем
+  SINGLE = 'SINGLE', // Одинок
+  WIDOW = 'WIDOW' // Вдовец / вдова
+}

@@ -1,10 +1,4 @@
-import { Doubtful } from './common';
-
-export enum MaritalStatus {
-  MARRIED = 'MARRIED', // Женат/замужем
-  SINGLE = 'SINGLE', // Одинок
-  WIDOW = 'WIDOW' // Вдовец / вдова
-}
+import { Doubtful, MaritalStatus } from './common';
 
 export type ProfileInfo = {
   id: string;
