@@ -1,7 +1,12 @@
 export enum DoubtStatus {
-  'OK' = "OK",
-  'WARN' = "WARN",
-  "ERROR" = "ERROR"
+  OK = 'OK',
+  WARN = 'WARN',
+  ERROR = 'ERROR'
+}
+export enum MaritalStatus {
+  MARRIED = 'MARRIED', // Женат/замужем
+  SINGLE = 'SINGLE', // Одинок
+  WIDOW = 'WIDOW' // Вдовец / вдова
 }
 
 type DoubtOk<T> = {
@@ -22,8 +27,3 @@ type DoubtError<T> = {
 }
 
 export type Doubtful<T> = DoubtOk<T> | DoubtWarn<T> | DoubtError<T>;
-export enum MaritalStatus {
-  MARRIED = 'MARRIED', // Женат/замужем
-  SINGLE = 'SINGLE', // Одинок
-  WIDOW = 'WIDOW' // Вдовец / вдова
-}

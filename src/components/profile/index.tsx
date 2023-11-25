@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Form } from 'antd';
-import { Doubtful } from '../../model/common';
-import { MaritalStatus } from '../../model/profile';
+import { Doubtful, MaritalStatus } from '../../model/common';
 import './profile.scss';
 import {
   ProfileFormItemBoolean,
@@ -59,19 +58,59 @@ export const Profile: React.FC<ProfileProps> = (profileData) => {
       labelWrap
       labelAlign={'left'}
     >
-      <ProfileFormItemString doubtfulData={profileData.secondName} label='Фамилия' name='secondName' />
-      <ProfileFormItemString doubtfulData={profileData.firstName} label='Имя' name='firstName' />
-      <ProfileFormItemString doubtfulData={profileData.middleName} label='Отчество' name='middleName' />
-      <ProfileFormItemString doubtfulData={profileData.birthDate} label='Дата рождения' name='birthDate' />
-      <ProfileFormItemString doubtfulData={profileData.passSeries} label='Серия паспорта' name='passSeries' />
-      <ProfileFormItemString doubtfulData={profileData.passNumber} label='Номер паспорта' name='passNumber' />
-      <ProfileFormItemString doubtfulData={profileData.registrationAddress} label='Адрес регистрации' name='registrationAddress' />
-      <ProfileFormItemString doubtfulData={profileData.residenceAddress} label='Адрес проживания' name='residenceAddress' />
-      <ProfileFormItemMaritalStatus doubtfulData={profileData.maritalStatus} label="Семейное положение" name="maritalStatus" />
-      <ProfileFormItemBoolean doubtfulData={profileData.haveChildren} label="Наличие детей" name="haveChildren"/>
-      <ProfileFormItemString doubtfulData={profileData.jobPlace} label='Место работы' name='jobPlace' />
-      <ProfileFormItemString doubtfulData={profileData.jobExperience} label='Стаж работы' name='jobExperience' />
-      <ProfileFormItemString doubtfulData={profileData.jobPosition} label='Должность' name='jobPosition' />
+      <ProfileFormItemString
+        doubtfulData={profileData.secondName}
+        label='Фамилия'
+        name='secondName' />
+      <ProfileFormItemString
+        doubtfulData={profileData.firstName}
+        label='Имя'
+        name=
+          'firstName' />
+      <ProfileFormItemString
+        doubtfulData={profileData.middleName}
+        label='Отчество'
+        name='middleName' />
+      <ProfileFormItemString
+        doubtfulData={profileData.birthDate}
+        label='Дата рождения'
+        name='birthDate' />
+      <ProfileFormItemString
+        doubtfulData={profileData.passSeries}
+        label='Серия паспорта'
+        name='passSeries' />
+      <ProfileFormItemString
+        doubtfulData={profileData.passNumber}
+        label='Номер паспорта'
+        name='passNumber' />
+      <ProfileFormItemString
+        doubtfulData={profileData.registrationAddress}
+        label='Адрес регистрации'
+        name='registrationAddress' />
+      <ProfileFormItemString
+        doubtfulData={profileData.residenceAddress}
+        label='Адрес проживания'
+        name='residenceAddress' />
+      <ProfileFormItemMaritalStatus
+        doubtfulData={profileData.maritalStatus}
+        label="Семейное положение"
+        name="maritalStatus" />
+      <ProfileFormItemBoolean
+        doubtfulData={profileData.haveChildren}
+        label="Наличие детей"
+        name="haveChildren"/>
+      <ProfileFormItemString
+        doubtfulData={profileData.jobPlace}
+        label='Место работы'
+        name='jobPlace' />
+      <ProfileFormItemString
+        doubtfulData={profileData.jobExperience}
+        label='Стаж работы'
+        name='jobExperience' />
+      <ProfileFormItemString
+        doubtfulData={profileData.jobPosition}
+        label='Должность'
+        name='jobPosition' />
       <ProfileFormItemNumber
         doubtfulData={profileData.monthOfficialIncome}
         label='Ежемесячный подтвержденный доход по месту работы'

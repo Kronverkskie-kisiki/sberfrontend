@@ -1,7 +1,8 @@
-import { MaritalStatus, ProfileInfo } from '../model/profile';
-import { DoubtStatus } from '../model/common';
+import { ProfileInfo } from '../model/profile';
+import { DoubtStatus, MaritalStatus } from '../model/common';
+import axios from 'axios';
 
-const profileMockData: ProfileInfo[]= [
+const profileMockData: readonly ProfileInfo[]= [
   {
     id: '1',
     firstName: { value: 'Сэргей', status: DoubtStatus.WARN, message: 'Возможная орфографическая ошибка' },
@@ -26,15 +27,19 @@ const profileMockData: ProfileInfo[]= [
   },
 ];
 
-const mockProfileService = {
+export const profileServiceMock = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getProfile: (profileId: string) => new Promise<ProfileInfo>((resolve) => {
     setTimeout(() => {
-      resolve(profileMockData.at(0) as ProfileInfo);
+      resolve(profileMockData[0]);
     }, 500);
   }),
 };
 
 export const profileService = {
-  getProfile: (profileId: string) => mockProfileService.getProfile(profileId),
+  getProfile: (profileId: string) =>
+    axios({
+      method: 'get',
+      url: `.../${profileId}`, // TODO: specify url
+    }),
 };

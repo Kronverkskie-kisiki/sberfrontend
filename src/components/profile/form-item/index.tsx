@@ -1,7 +1,6 @@
 import { Form, FormItemProps, Input, InputNumber, Select } from 'antd';
-import { Doubtful, DoubtStatus } from '../../../model/common';
+import { MaritalStatus, Doubtful, DoubtStatus } from '../../../model/common';
 import React from 'react';
-import { MaritalStatus } from '../../../model/profile';
 
 export type ProfileFormItemProps<T> = FormItemProps & {
   doubtfulData?: Doubtful<T>,

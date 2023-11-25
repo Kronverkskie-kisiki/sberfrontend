@@ -20,7 +20,8 @@ export type RiskScore<T> = {
 }
 
 export type RiskInfo = {
-  readonly id: RiskScore<string>;
+  readonly id: string;
+  readonly age: RiskScore<number>;
   readonly maritalStatus: RiskScore<MaritalStatus>;
   readonly haveChildren: RiskScore<boolean>;
   readonly creditHistory: RiskScore<CreditHistoryStatus>;
@@ -28,5 +29,5 @@ export type RiskInfo = {
   readonly currentJobSeniority: RiskScore<number>;
   readonly debtBurdenIndicator: RiskScore<number>; // Показатель долговой нагрузки
   readonly totalIncome: RiskScore<number>;
-  readonly haveSavingsAccount: RiskScore<number>;
+  readonly haveSavingsAccount: RiskScore<boolean>;
 }
