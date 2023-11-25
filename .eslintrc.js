@@ -7,6 +7,7 @@ module.exports = {
     'standard',
     'prettier',
     'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
     'google',
   ],
   overrides: [
@@ -22,6 +23,7 @@ module.exports = {
       },
     },
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -29,6 +31,7 @@ module.exports = {
   plugins: [
     'react',
     'prettier',
+    '@typescript-eslint',
   ],
   rules: {
     'require-jsdoc': 'off',

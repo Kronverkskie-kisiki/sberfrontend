@@ -2,6 +2,9 @@ import React from 'react';
 import { ConfigProvider } from 'antd';
 
 import '../static/css/style.scss';
+import { AppRoutes } from './components/routes';
+import { BrowserRouter } from 'react-router-dom';
+
 
 function App() {
   return (
@@ -13,7 +16,9 @@ function App() {
         borderRadius: 5,
       },
       }}>
-
+        <BrowserRouter>
+          <AppRoutes/>
+        </BrowserRouter>
       </ConfigProvider>
     </div>
   );
