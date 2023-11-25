@@ -1,7 +1,14 @@
 import React, { useEffect } from 'react';
-import { Form, FormItemProps, Input, Select } from 'antd';
-import { Doubtful, DoubtStatus } from '../../model/common';
+import { Form } from 'antd';
+import { Doubtful } from '../../model/common';
 import { MaritalStatus } from '../../model/profile';
+import './profile.scss';
+import {
+  ProfileFormItemBoolean,
+  ProfileFormItemMaritalStatus,
+  ProfileFormItemNumber,
+  ProfileFormItemString,
+} from './form-item';
 
 export type ProfileProps = {
   firstName?: Doubtful<string>; // Имя
@@ -25,59 +32,6 @@ export type ProfileProps = {
   haveBankSavings?: Doubtful<boolean>; // Наличие сбережений на счетах в Банке
 }
 
-type ProfileFormItemProps<T> = FormItemProps & {
-  doubtfulData?: Doubtful<T>,
-  disabled?: boolean
-};
-
-const doubtfulStatusToValidateStatus: { [key in DoubtStatus]: 'success' | 'warning' | 'error' | 'validating' | undefined } = {
-  [DoubtStatus.OK]: 'success',
-  [DoubtStatus.WARN]: 'warning',
-  [DoubtStatus.ERROR]: 'error',
-};
-
-const ProfileFormItemString: React.FC<ProfileFormItemProps<string>> = ({ doubtfulData, disabled = true, ...rest }) => {
-  if (doubtfulData) {
-    return (
-      <Form.Item
-        validateStatus={doubtfulStatusToValidateStatus[doubtfulData.status]}
-        help={doubtfulData.status !== DoubtStatus.OK && doubtfulData.message}
-        hasFeedback
-        {...rest}>
-        <Input disabled={disabled}/>
-      </Form.Item>
-    );
-  } else {
-    return (
-      <Form.Item {...rest}>
-        <Input />
-      </Form.Item>
-    );
-  }
-};
-
-const ProfileFormItemMaritalStatus: React.FC<ProfileFormItemProps<MaritalStatus>> = ({ doubtfulData, disabled = false, ...rest }) => (
-  <>
-    { doubtfulData ?
-    (<Form.Item
-      validateStatus={doubtfulStatusToValidateStatus[doubtfulData.status]}
-      help={doubtfulData.status !== DoubtStatus.OK && doubtfulData.message}
-      hasFeedback
-      {...rest}
-    >
-      <Select disabled={disabled}
-        options={[
-          { value: MaritalStatus.MARRIED, label: 'Женат / Замужем' },
-          { value: MaritalStatus.SINGLE, label: 'Одинок / Одинока' },
-          { value: MaritalStatus.WIDOW, label: 'Вдовец / Вдова' },
-        ]}
-      />
-    </Form.Item>) :
-      <></>
-    }
-  </>
-);
-
 
 export const Profile: React.FC<ProfileProps> = (profileData) => {
   const [form] = Form.useForm();
@@ -94,14 +48,14 @@ export const Profile: React.FC<ProfileProps> = (profileData) => {
   }, [profileData]);
 
   return <div className='sb-profile'>
-    <p>Анкета участника сделки</p>
+    <p className="sb-profile__title">Анкета участника сделки</p>
     <Form
       form={form}
       onFinish={(formData) => {
         console.log(formData);
       }}
-      labelCol={{ span: 4 }}
-      wrapperCol={{ span: 12 }}
+      labelCol={{ span: 6 }}
+      wrapperCol={{ span: 10 }}
       labelWrap
       labelAlign={'left'}
     >
@@ -114,15 +68,50 @@ export const Profile: React.FC<ProfileProps> = (profileData) => {
       <ProfileFormItemString doubtfulData={profileData.registrationAddress} label='Адрес регистрации' name='registrationAddress' />
       <ProfileFormItemString doubtfulData={profileData.residenceAddress} label='Адрес проживания' name='residenceAddress' />
       <ProfileFormItemMaritalStatus doubtfulData={profileData.maritalStatus} label="Семейное положение" name="maritalStatus" />
-      {/* haveChildren */}
+      <ProfileFormItemBoolean doubtfulData={profileData.haveChildren} label="Наличие детей" name="haveChildren"/>
       <ProfileFormItemString doubtfulData={profileData.jobPlace} label='Место работы' name='jobPlace' />
       <ProfileFormItemString doubtfulData={profileData.jobExperience} label='Стаж работы' name='jobExperience' />
       <ProfileFormItemString doubtfulData={profileData.jobPosition} label='Должность' name='jobPosition' />
-      {/* <ProfileFormItemString doubtfulData={profileData.monthOfficialIncome} label='Ежемесячный подтвержденный доход по месту работы' name='jobPosition' />*/}
-      <ProfileFormItemString doubtfulData={profileData.incomeDocument} label='Документ, подтверждающий доход' name='incomeDocument' labelCol={{ span: 6 }} wrapperCol={{ span: 10 }}/>
-      <ProfileFormItemString doubtfulData={profileData.additionalIncomeSource} label='Источник дополнительного дохода' name='additionalIncomeSource' labelCol={{ span: 6 }} wrapperCol={{ span: 10 }}/>
-
-
+      <ProfileFormItemNumber
+        doubtfulData={profileData.monthOfficialIncome}
+        label='Ежемесячный подтвержденный доход по месту работы'
+        name='monthOfficialIncome'
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 10 }}
+      />
+      <ProfileFormItemString
+        doubtfulData={profileData.incomeDocument}
+        label='Документ, подтверждающий доход'
+        name='incomeDocument'
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 10 }}
+      />
+      <ProfileFormItemNumber
+        doubtfulData={profileData.monthAdditionalIncome}
+        label='Ежемесячный дополнительный доход'
+        name='monthAdditionalIncome'
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 10 }}
+      />
+      <ProfileFormItemBoolean
+        doubtfulData={profileData.isAdditionalIncomeApproved}
+        label={'Дополнительный доход подтвержден документально'}
+        name="isAdditionalIncomeApproved"
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 10 }}
+      />
+      <ProfileFormItemString
+        doubtfulData={profileData.additionalIncomeSource}
+        name='additionalIncomeSource'
+        label='Источник дополнительного дохода'
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 10 }}/>
+      <ProfileFormItemBoolean
+        doubtfulData={profileData.haveBankSavings}
+        name="haveBankSavings"
+        label="Наличие сбережений на счетах в Банке"
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 10 }}/>
     </Form>
   </div>;
 };
