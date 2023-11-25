@@ -51,8 +51,8 @@ export const ProfileForm: React.FC<ProfileProps> = (profileData) => {
       onFinish={(formData) => {
         console.log(formData);
       }}
-      labelCol={{ span: 6 }}
-      wrapperCol={{ span: 10 }}
+      labelCol={{ span: 10 }}
+      wrapperCol={{ span: 14 }}
       labelWrap
       labelAlign={'left'}
     >
@@ -113,42 +113,42 @@ export const ProfileForm: React.FC<ProfileProps> = (profileData) => {
         doubtfulData={profileData.monthOfficialIncome}
         label='Ежемесячный подтвержденный доход по месту работы'
         name='monthOfficialIncome'
-        labelCol={{ span: 6 }}
-        wrapperCol={{ span: 10 }}
+        labelCol={{ span: 10 }}
+        wrapperCol={{ span: 14 }}
       />
       <ProfileFormItemString
         doubtfulData={profileData.incomeDocument}
         label='Документ, подтверждающий доход'
         name='incomeDocument'
-        labelCol={{ span: 6 }}
-        wrapperCol={{ span: 10 }}
+        labelCol={{ span: 10 }}
+        wrapperCol={{ span: 14 }}
       />
       <ProfileFormItemNumber
         doubtfulData={profileData.monthAdditionalIncome}
         label='Ежемесячный дополнительный доход'
         name='monthAdditionalIncome'
-        labelCol={{ span: 6 }}
-        wrapperCol={{ span: 10 }}
+        labelCol={{ span: 10 }}
+        wrapperCol={{ span: 14 }}
       />
       <ProfileFormItemBoolean
         doubtfulData={profileData.isAdditionalIncomeApproved}
         label={'Дополнительный доход подтвержден документально'}
         name="isAdditionalIncomeApproved"
-        labelCol={{ span: 6 }}
-        wrapperCol={{ span: 10 }}
+        labelCol={{ span: 10 }}
+        wrapperCol={{ span: 14 }}
       />
       <ProfileFormItemString
         doubtfulData={profileData.additionalIncomeSource}
         name='additionalIncomeSource'
         label='Источник дополнительного дохода'
-        labelCol={{ span: 6 }}
-        wrapperCol={{ span: 10 }}/>
+        labelCol={{ span: 10 }}
+        wrapperCol={{ span: 14 }}/>
       <ProfileFormItemBoolean
         doubtfulData={profileData.haveBankSavings}
         name="haveBankSavings"
         label="Наличие сбережений на счетах в Банке"
-        labelCol={{ span: 6 }}
-        wrapperCol={{ span: 10 }}/>
+        labelCol={{ span: 10 }}
+        wrapperCol={{ span: 14 }}/>
     </Form>
   );
 };

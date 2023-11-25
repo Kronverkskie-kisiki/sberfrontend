@@ -1,7 +1,11 @@
 @import "font";
+@import "variable";
 
 * {
+    padding: 0;
+    margin: 0;
     font-family: "SB Sans Text", sans-serif;
+    font-size: var(--font-weight-regular);
 }
 
 .ant-form-item-label {
