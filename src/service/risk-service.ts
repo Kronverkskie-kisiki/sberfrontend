@@ -29,6 +29,6 @@ export const riskService = {
   gerRiskInfo: (id: string) =>
     axios({
       method: 'get',
-      url: `.../${id}`, // TODO: specify url
+      url: `http://localhost:5005/api/get_risk_info?id=${id}`, // TODO: specify url
     }),
 };
