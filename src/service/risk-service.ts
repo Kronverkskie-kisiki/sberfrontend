@@ -1,6 +1,6 @@
 import { CreditHistoryStatus, MainIncomeType, RiskInfo } from '../model/risk-info';
 import { MaritalStatus } from '../model/common';
-import axios from 'axios';
+import { fetchServer } from './fetch-server';
 
 const riskInfoMockData: readonly RiskInfo[] = [
   {
@@ -27,8 +27,7 @@ export const riskServiceMock = {
 };
 export const riskService = {
   gerRiskInfo: (id: string) =>
-    axios({
-      method: 'get',
-      url: `http://localhost:5005/api/get_risk_info?id=${id}`, // TODO: specify url
-    }),
+    fetchServer<RiskInfo>(
+        `http://localhost:5005/api/get_risk_info?id=${id}`,
+    ),
 };

@@ -1,6 +1,6 @@
 import { ProfileInfo } from '../model/profile';
 import { DoubtStatus, MaritalStatus } from '../model/common';
-import axios from 'axios';
+import { fetchServer } from './fetch-server';
 
 const profileMockData: readonly ProfileInfo[]= [
   {
@@ -27,20 +27,6 @@ const profileMockData: readonly ProfileInfo[]= [
   },
 ];
 
-export const fetchServer = <T>(
-  url: string,
-  method = 'GET',
-  body: any = null,
-  headers: any = { 'Access-Control-Allow-Origin': '*' },
-) => {
-  return fetch(url, { method, body, headers, mode: 'no-cors' })
-      .then((r) => r.json() as T)
-      .catch(() => {
-        throw new Error(`Could not fetch ${url}`);
-      });
-};
-
-
 export const profileServiceMock = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getProfile: (profileId: string) => new Promise<ProfileInfo>((resolve) => {
@@ -48,16 +34,11 @@ export const profileServiceMock = {
       resolve(profileMockData[0]);
     }, 500);
   }),
-  getProfile2: (profileId: string) =>
-    fetchServer<ProfileInfo>(
-        `http://localhost:5005/api/get_profile_info?id=${profileId}`,
-    ),
 };
 
 export const profileService = {
   getProfile: (profileId: string) =>
-    axios({
-      method: 'get',
-      url: `http://localhost:5005/api/get_profile_info?id=${profileId}`, // TODO: specify url
-    }),
+    fetchServer<ProfileInfo>(
+        `http://localhost:5005/api/get_profile_info?id=${profileId}`,
+    ),
 };
