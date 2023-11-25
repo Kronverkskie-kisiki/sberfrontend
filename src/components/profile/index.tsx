@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Form, FormItemProps, Input } from 'antd';
+import { Form, FormItemProps, Input, Select } from 'antd';
 import { Doubtful, DoubtStatus } from '../../model/common';
 import { MaritalStatus } from '../../model/profile';
 
@@ -25,15 +25,18 @@ export type ProfileProps = {
   haveBankSavings?: Doubtful<boolean>; // Наличие сбережений на счетах в Банке
 }
 
-type ProfileFormItemProps<T> = FormItemProps & { doubtfulData?: Doubtful<T> };
+type ProfileFormItemProps<T> = FormItemProps & {
+  doubtfulData?: Doubtful<T>,
+  disabled?: boolean
+};
 
-const ProfileFormItemString: React.FC<ProfileFormItemProps<string>> = ({ doubtfulData, ...rest }) => {
-  const doubtfulStatusToValidateStatus: { [key in DoubtStatus]: 'success' | 'warning' | 'error' | 'validating' | undefined } = {
-    [DoubtStatus.OK]: 'success',
-    [DoubtStatus.WARN]: 'warning',
-    [DoubtStatus.ERROR]: 'error',
-  };
+const doubtfulStatusToValidateStatus: { [key in DoubtStatus]: 'success' | 'warning' | 'error' | 'validating' | undefined } = {
+  [DoubtStatus.OK]: 'success',
+  [DoubtStatus.WARN]: 'warning',
+  [DoubtStatus.ERROR]: 'error',
+};
 
+const ProfileFormItemString: React.FC<ProfileFormItemProps<string>> = ({ doubtfulData, disabled = true, ...rest }) => {
   if (doubtfulData) {
     return (
       <Form.Item
@@ -41,7 +44,7 @@ const ProfileFormItemString: React.FC<ProfileFormItemProps<string>> = ({ doubtfu
         help={doubtfulData.status !== DoubtStatus.OK && doubtfulData.message}
         hasFeedback
         {...rest}>
-        <Input />
+        <Input disabled={disabled}/>
       </Form.Item>
     );
   } else {
@@ -52,6 +55,28 @@ const ProfileFormItemString: React.FC<ProfileFormItemProps<string>> = ({ doubtfu
     );
   }
 };
+
+const ProfileFormItemMaritalStatus: React.FC<ProfileFormItemProps<MaritalStatus>> = ({ doubtfulData, disabled = false, ...rest }) => (
+  <>
+    { doubtfulData ?
+    (<Form.Item
+      validateStatus={doubtfulStatusToValidateStatus[doubtfulData.status]}
+      help={doubtfulData.status !== DoubtStatus.OK && doubtfulData.message}
+      hasFeedback
+      {...rest}
+    >
+      <Select disabled={disabled}
+        options={[
+          { value: MaritalStatus.MARRIED, label: 'Женат / Замужем' },
+          { value: MaritalStatus.SINGLE, label: 'Одинок / Одинока' },
+          { value: MaritalStatus.WIDOW, label: 'Вдовец / Вдова' },
+        ]}
+      />
+    </Form.Item>) :
+      <></>
+    }
+  </>
+);
 
 
 export const Profile: React.FC<ProfileProps> = (profileData) => {
@@ -88,7 +113,7 @@ export const Profile: React.FC<ProfileProps> = (profileData) => {
       <ProfileFormItemString doubtfulData={profileData.passNumber} label='Номер паспорта' name='passNumber' />
       <ProfileFormItemString doubtfulData={profileData.registrationAddress} label='Адрес регистрации' name='registrationAddress' />
       <ProfileFormItemString doubtfulData={profileData.residenceAddress} label='Адрес проживания' name='residenceAddress' />
-      {/*  Семейное положение */}
+      <ProfileFormItemMaritalStatus doubtfulData={profileData.maritalStatus} label="Семейное положение" name="maritalStatus" />
       {/* haveChildren */}
       <ProfileFormItemString doubtfulData={profileData.jobPlace} label='Место работы' name='jobPlace' />
       <ProfileFormItemString doubtfulData={profileData.jobExperience} label='Стаж работы' name='jobExperience' />
