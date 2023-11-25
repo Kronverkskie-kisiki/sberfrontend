@@ -4,10 +4,18 @@ export enum DoubtStatus {
   ERROR = 'ERROR'
 }
 export enum MaritalStatus {
-  MARRIED = 'MARRIED', // Женат/замужем
-  SINGLE = 'SINGLE', // Одинок
-  WIDOW = 'WIDOW' // Вдовец / вдова
+  MARRIED = 'MARRIED',
+  SINGLE = 'SINGLE',
+  WIDOW = 'WIDOW',
+  DIVORCED = 'DIVORCED'
 }
+
+export const martialStatusDefinition = {
+  [MaritalStatus.MARRIED]: 'Женат / замужем',
+  [MaritalStatus.SINGLE]: 'Холост',
+  [MaritalStatus.WIDOW]: 'Вдовец / вдова',
+  [MaritalStatus.DIVORCED]: 'В разводе',
+};
 
 type DoubtOk<T> = {
   value: T;

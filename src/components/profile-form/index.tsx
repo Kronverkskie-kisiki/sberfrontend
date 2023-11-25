@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Form } from 'antd';
 import { Doubtful, MaritalStatus } from '../../model/common';
-import './profile.scss';
 import {
   ProfileFormItemBoolean,
   ProfileFormItemMaritalStatus,
@@ -32,7 +31,7 @@ export type ProfileProps = {
 }
 
 
-export const Profile: React.FC<ProfileProps> = (profileData) => {
+export const ProfileForm: React.FC<ProfileProps> = (profileData) => {
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -46,8 +45,7 @@ export const Profile: React.FC<ProfileProps> = (profileData) => {
     }
   }, [profileData]);
 
-  return <div className='sb-profile'>
-    <p className="sb-profile__title">Анкета участника сделки</p>
+  return (
     <Form
       form={form}
       onFinish={(formData) => {
@@ -152,5 +150,5 @@ export const Profile: React.FC<ProfileProps> = (profileData) => {
         labelCol={{ span: 6 }}
         wrapperCol={{ span: 10 }}/>
     </Form>
-  </div>;
+  );
 };

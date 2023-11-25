@@ -2,7 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { profileService, profileServiceMock } from '../../service/profile-service';
-import { Profile } from '../profile';
+import { ProfileForm } from '../profile-form';
+import './profile-page.scss';
 
 export const ProfilePage: React.FC = () => {
   const { id } = useParams();
@@ -13,5 +14,11 @@ export const ProfilePage: React.FC = () => {
     // queryFn: (id) => profileServiceMock.getProfile(String(id)),
     queryFn: (id) => profileServiceMock.getProfile2(String(id)),
   });
-  return (<div><Profile {...profileInfo}/></div>);
+  return (
+    <div className="sb-profile-page">
+      <p className="sb-profile-page__title">
+        Анкета участника сделки
+      </p>
+      <ProfileForm {...profileInfo}/>
+    </div>);
 };

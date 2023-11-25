@@ -7,12 +7,26 @@ export enum CreditHistoryStatus {
   GOOD = 'GOOD'
 }
 
+export const creditHistoryDefinition = {
+  [CreditHistoryStatus.NONE]: 'Отсутствует',
+  [CreditHistoryStatus.BAD]: 'Плохая',
+  [CreditHistoryStatus.MEDIUM]: 'Средняя',
+  [CreditHistoryStatus.GOOD]: 'Хорошая',
+};
+
 export enum MainIncomeType {
   MAIN_WORK = 'MAIN_WORK',
   BUSINESS = 'BUSINESS',
   PENSION = 'PENSION',
   OTHER = 'OTHER'
 }
+
+export const mainIncomeTypeDefinition = {
+  [MainIncomeType.MAIN_WORK]: 'Заработная плата по основному месту работы',
+  [MainIncomeType.BUSINESS]: 'Доходы от предпринимательства',
+  [MainIncomeType.PENSION]: 'Пенсия',
+  [MainIncomeType.OTHER]: 'Иное',
+};
 
 export type RiskScore<T> = {
   value: T;

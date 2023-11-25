@@ -1,5 +1,5 @@
 import { Form, FormItemProps, Input, InputNumber, Select } from 'antd';
-import { MaritalStatus, Doubtful, DoubtStatus } from '../../../model/common';
+import { Doubtful, DoubtStatus, MaritalStatus } from '../../../model/common';
 import React from 'react';
 
 export type ProfileFormItemProps<T> = FormItemProps & {
@@ -88,8 +88,9 @@ export const ProfileFormItemMaritalStatus: React.FC<ProfileFormItemProps<Marital
           dropdownRender={readOnly ? () => (<></>) : undefined}
           options={[
             { value: MaritalStatus.MARRIED, label: 'Женат / Замужем' },
-            { value: MaritalStatus.SINGLE, label: 'Одинок / Одинока' },
+            { value: MaritalStatus.SINGLE, label: 'Холост' },
             { value: MaritalStatus.WIDOW, label: 'Вдовец / Вдова' },
+            { value: MaritalStatus.DIVORCED, label: 'В разводе' },
           ]}
         />
       </Form.Item>) :
