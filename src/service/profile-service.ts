@@ -14,7 +14,7 @@ const profileMockData: ProfileInfo[]= [
     residenceAddress: { value: 'г. Москва', status: DoubtStatus.OK },
     maritalStatus: { value: MaritalStatus.MARRIED, status: DoubtStatus.WARN, message: 'Отсутствует подтверждение из МВД' },
     haveChildren: { value: true, status: DoubtStatus.OK },
-    jopPlace: { value: 'ООО "Мегахорош"', status: DoubtStatus.OK },
+    jobPlace: { value: 'ООО "Мегахорош"', status: DoubtStatus.OK },
     jobExperience: { value: '12 лет и 3 мес.', status: DoubtStatus.OK },
     jobPosition: { value: 'Генеральный директор', status: DoubtStatus.OK },
     monthOfficialIncome: { value: 175615.27, status: DoubtStatus.OK },

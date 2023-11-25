@@ -18,7 +18,7 @@ export type ProfileInfo = {
   residenceAddress: Doubtful<string>; // Адрес проживания
   maritalStatus: Doubtful<MaritalStatus>; // Семейное положение
   haveChildren: Doubtful<boolean>; // Наличие детей
-  jopPlace: Doubtful<string>; // Место работы
+  jobPlace: Doubtful<string>; // Место работы
   jobExperience: Doubtful<string>; // Стаж работы
   jobPosition: Doubtful<string>; // Должность
   monthOfficialIncome: Doubtful<number>; // Ежемесячный подтвержденный доход по месту работы

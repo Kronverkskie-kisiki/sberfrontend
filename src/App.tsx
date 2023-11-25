@@ -11,15 +11,21 @@ function App() {
   const queryClient = new QueryClient();
 
   return (
-    <div className="sb-app">
+    <div className='sb-app'>
       <QueryClientProvider client={queryClient}>
-        <ConfigProvider theme={{ token: {
-          colorPrimary: '#08a652',
-          colorSuccess: '#08a652',
-          colorWarning: '#f6650a',
-          colorError: '#cc0000',
-          borderRadius: 5,
-        },
+        <ConfigProvider theme={{
+          token: {
+            colorPrimary: '#08a652',
+            colorSuccess: '#08a652',
+            colorWarning: '#f6650a',
+            colorError: '#cc0000',
+            borderRadius: 5,
+          }, components: {
+            Form: {
+              // verticalLabelPadding: '0 8px 8px',
+              verticalLabelMargin: '0 8px 8px',
+            },
+          },
         }}>
           <BrowserRouter>
             <AppRoutes/>
@@ -27,7 +33,8 @@ function App() {
         </ConfigProvider>
       </QueryClientProvider>
     </div>
-  );
+  )
+  ;
 }
 
 export default App;

@@ -14,7 +14,7 @@ export type ProfileProps = {
   residenceAddress?: Doubtful<string>; // Адрес проживания
   maritalStatus?: Doubtful<MaritalStatus>; // Семейное положение
   haveChildren?: Doubtful<boolean>; // Наличие детей
-  jopPlace?: Doubtful<string>; // Место работы
+  jobPlace?: Doubtful<string>; // Место работы
   jobExperience?: Doubtful<string>; // Стаж работы
   jobPosition?: Doubtful<string>; // Должность
   monthOfficialIncome?: Doubtful<number>; // Ежемесячный подтвержденный доход по месту работы
@@ -76,10 +76,28 @@ export const Profile: React.FC<ProfileProps> = (profileData) => {
         console.log(formData);
       }}
       labelCol={{ span: 4 }}
-      wrapperCol={{ span: 12 }}>
+      wrapperCol={{ span: 12 }}
+      labelWrap
+      labelAlign={'left'}
+    >
       <ProfileFormItemString doubtfulData={profileData.secondName} label='Фамилия' name='secondName' />
       <ProfileFormItemString doubtfulData={profileData.firstName} label='Имя' name='firstName' />
       <ProfileFormItemString doubtfulData={profileData.middleName} label='Отчество' name='middleName' />
+      <ProfileFormItemString doubtfulData={profileData.birthDate} label='Дата рождения' name='birthDate' />
+      <ProfileFormItemString doubtfulData={profileData.passSeries} label='Серия паспорта' name='passSeries' />
+      <ProfileFormItemString doubtfulData={profileData.passNumber} label='Номер паспорта' name='passNumber' />
+      <ProfileFormItemString doubtfulData={profileData.registrationAddress} label='Адрес регистрации' name='registrationAddress' />
+      <ProfileFormItemString doubtfulData={profileData.residenceAddress} label='Адрес проживания' name='residenceAddress' />
+      {/*  Семейное положение */}
+      {/* haveChildren */}
+      <ProfileFormItemString doubtfulData={profileData.jobPlace} label='Место работы' name='jobPlace' />
+      <ProfileFormItemString doubtfulData={profileData.jobExperience} label='Стаж работы' name='jobExperience' />
+      <ProfileFormItemString doubtfulData={profileData.jobPosition} label='Должность' name='jobPosition' />
+      {/* <ProfileFormItemString doubtfulData={profileData.monthOfficialIncome} label='Ежемесячный подтвержденный доход по месту работы' name='jobPosition' />*/}
+      <ProfileFormItemString doubtfulData={profileData.incomeDocument} label='Документ, подтверждающий доход' name='incomeDocument' labelCol={{ span: 6 }} wrapperCol={{ span: 10 }}/>
+      <ProfileFormItemString doubtfulData={profileData.additionalIncomeSource} label='Источник дополнительного дохода' name='additionalIncomeSource' labelCol={{ span: 6 }} wrapperCol={{ span: 10 }}/>
+
+
     </Form>
   </div>;
 };
