@@ -1,17 +1,19 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { riskServiceMock } from '../../service/risk-service';
 import { RiskTable } from '../risk-form';
 
 import './risk-page.scss';
 import { gigachatService, gigachatServiceMock } from '../../service/gigachat-service';
-import { Button, Col, Form, Input, Modal, Row, Space } from 'antd';
-import { ProfileForm } from '../profile-form';
+import { Button, Col, Row, Space } from 'antd';
 import { GigachatMessage } from '../gigachat-message';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 export const RiskPage: React.FC = () => {
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const { data: riskInfo } = useQuery({
     queryKey: ['getRiskInfo', id],
@@ -20,19 +22,28 @@ export const RiskPage: React.FC = () => {
 
   const { data: riskInfoSummary } = useQuery({
     queryKey: ['getRiskInfoSummary', id],
-    queryFn: () => gigachatService.getRiskInfoSummary(String(id)),
+    queryFn: () => gigachatServiceMock.getRiskInfoSummary(String(id)),
     retry: false,
   });
 
-  const [isCloseModalOpen, setIsCloseModalOpen] = useState(false);
-
   return (
     <div className="sb-risk-page">
-      <p className="sb-risk-page__title">
-        Расчет уровня риска
-      </p>
-
       <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+
+        <p className="sb-risk-page__title">
+          Расчет уровня риска
+        </p>
+
+        <Button
+          size="large"
+          onClick={() => {
+            navigate(`/profile/${id}`);
+          }}
+        >
+          <ArrowLeftOutlined />
+          Вернуться к просмотру заявки
+        </Button>
+
         <Row gutter={[16, 40]}>
           <Col span={16}>
             {riskInfo && (<RiskTable {...riskInfo} />)}
@@ -41,22 +52,6 @@ export const RiskPage: React.FC = () => {
             <GigachatMessage message={riskInfoSummary?.answer || ''}/>
           </Col>
         </Row>
-
-        <Row>
-          <Col span={8}>
-            <Button size="large" danger onClick={() => {setIsCloseModalOpen(true);}}>Отправить на доработку</Button>
-          </Col>
-          <Col span={16}>
-            <Button size="large">Расчет рисков</Button>
-          </Col>
-        </Row>
       </Space>
-      <Modal title="Подтвердите действие">
-        <Form>
-          <Form.Item>
-            <Input/>
-          </Form.Item>
-        </Form>
-      </Modal>
     </div>);
 };
