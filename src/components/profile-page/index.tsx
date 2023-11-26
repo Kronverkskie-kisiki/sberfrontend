@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { profileServiceMock } from '../../service/profile-service';
 import { ProfileForm } from '../profile-form';
 import './profile-page.scss';
-import { gigachatServiceMock } from '../../service/gigachat-service';
+import { gigachatService } from '../../service/gigachat-service';
 import { GigachatMessage } from '../gigachat-message';
 import { Button, Col, Form, Input, message, Modal, Row, Space } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
@@ -26,7 +26,7 @@ export const ProfilePage: React.FC = () => {
 
   const { data: profileSummary } = useQuery({
     queryKey: ['getProfileSummary', id],
-    queryFn: () => gigachatServiceMock.getProfileSummary(String(id)),
+    queryFn: () => gigachatService.getProfileSummary('231806444'),
   });
 
   const { mutate: rejectProfile, isSuccess: isRejectSuccess } = useMutation({ mutationFn: profileServiceMock.rejectProfile });
