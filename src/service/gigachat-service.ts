@@ -60,6 +60,7 @@ export const gigachatServiceMock = {
 export const gigachatService = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   getRiskInfoSummary: (riskInfoId: string) =>
-    fetchServer<GigachatResponse>('https://gigachat.archphoenix.tech/api/loan_rating', 'POST', {}),
-  // fetchServer<GigachatResponse>('https://gigachat.archphoenix.tech/api/health_check', 'GET'),
+    fetchServer<GigachatResponse>('/api/loan_rating', 'POST', {}),
+  getProfileSummary: (userId: string) =>
+    fetchServer<GigachatResponse>('/api/vk-analysis', 'POST', { userId }),
 };
