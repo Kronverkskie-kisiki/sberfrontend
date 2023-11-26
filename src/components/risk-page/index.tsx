@@ -49,7 +49,7 @@ export const RiskPage: React.FC = () => {
             {riskInfo && (<RiskTable {...riskInfo} />)}
           </Col>
           <Col span={7}>
-            <GigachatMessage message={riskInfoSummary?.answer || ''}/>
+            <GigachatMessage label="Оценка риска:" message={riskInfoSummary?.answer || ''}/>
           </Col>
         </Row>
       </Space>

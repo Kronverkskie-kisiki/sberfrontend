@@ -36,7 +36,7 @@ export const ProfilePage: React.FC = () => {
           <ProfileForm {...profileInfo}/>
         </Col>
         <Col span={7}>
-          <GigachatMessage message={profileSummary?.answer || ''}/>
+          <GigachatMessage label="Анализ соц. сетей:" message={profileSummary?.answer || ''}/>
         </Col>
       </Row>
 
