@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+  sber-frontend:
+    build: .
+    container_name: sber-frontend
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true

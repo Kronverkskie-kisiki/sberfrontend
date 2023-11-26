@@ -1,7 +1,5 @@
-import { message } from 'antd';
 import { GigachatResponse } from '../model/gigachat';
 import { fetchServer } from './fetch-server';
-import axios from 'axios';
 
 export const gigachatServiceMock = {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

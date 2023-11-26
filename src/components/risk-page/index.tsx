@@ -5,7 +5,7 @@ import { riskServiceMock } from '../../service/risk-service';
 import { RiskTable } from '../risk-form';
 
 import './risk-page.scss';
-import { gigachatService, gigachatServiceMock } from '../../service/gigachat-service';
+import { gigachatServiceMock } from '../../service/gigachat-service';
 import { Button, Col, Modal, Row, Space, message } from 'antd';
 import { GigachatMessage } from '../gigachat-message';
 import { ArrowLeftOutlined, CheckCircleOutlined } from '@ant-design/icons';

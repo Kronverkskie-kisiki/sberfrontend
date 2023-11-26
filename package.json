@@ -26,7 +26,8 @@
   "scripts": {
     "dev": "webpack serve",
     "build": "webpack",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [

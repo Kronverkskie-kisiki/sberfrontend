@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { profileService, profileServiceMock } from '../../service/profile-service';
+import { profileServiceMock } from '../../service/profile-service';
 import { ProfileForm } from '../profile-form';
 import './profile-page.scss';
 import { gigachatServiceMock } from '../../service/gigachat-service';
