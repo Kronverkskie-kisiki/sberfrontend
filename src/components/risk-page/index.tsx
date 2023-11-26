@@ -22,7 +22,7 @@ export const RiskPage: React.FC = () => {
 
   const { data: riskInfo } = useQuery({
     queryKey: ['getRiskInfo', id],
-    queryFn: (id) => riskServiceMock.getRiskInfo(String(id)),
+    queryFn: () => riskServiceMock.getRiskInfo(String(id)),
   });
 
   const { data: riskInfoSummary } = useQuery({

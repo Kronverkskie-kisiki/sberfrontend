@@ -42,6 +42,7 @@ module.exports = {
     'n/handle-callback-err': [0],
     '@typescript-eslint/no-explicit-any': [0],
     'react/jsx-first-prop-new-line': [2, 'multiline'],
+    '@typescript-eslint/no-unused-vars': [0],
     'react/jsx-max-props-per-line': [
       2,
       { maximum: 1, when: 'multiline' },

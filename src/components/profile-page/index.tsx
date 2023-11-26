@@ -19,7 +19,9 @@ export const ProfilePage: React.FC = () => {
 
   const { data: profileInfo } = useQuery({
     queryKey: ['getProfile', id],
-    queryFn: (id) => profileServiceMock.getProfile(String(id)),
+    queryFn: () => {
+      return profileServiceMock.getProfile(String(id));
+    },
   });
 
   const { data: profileSummary } = useQuery({
@@ -29,6 +31,7 @@ export const ProfilePage: React.FC = () => {
 
   const { mutate: rejectProfile, isSuccess: isRejectSuccess } = useMutation({ mutationFn: profileServiceMock.rejectProfile });
 
+  console.log(id);
   useEffect(() => {
     if (isRejectSuccess) {
       messageApi.success('Заявка удалена успешно!');
