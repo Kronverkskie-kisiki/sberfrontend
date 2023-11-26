@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { riskServiceMock } from '../../service/risk-service';
 import { RiskTable } from '../risk-form';
 
 import './risk-page.scss';
 import { gigachatService, gigachatServiceMock } from '../../service/gigachat-service';
-import { Button, Col, Progress, Row, Space } from 'antd';
+import { Button, Col, Modal, Row, Space, message } from 'antd';
 import { GigachatMessage } from '../gigachat-message';
-import { ArrowLeftOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, CheckCircleOutlined } from '@ant-design/icons';
 import { martialStatusDefinition } from '../../model/common';
 import { creditHistoryDefinition, mainIncomeTypeDefinition } from '../../model/risk-info';
 import { RiskScore } from '../risk-score';
@@ -17,6 +17,8 @@ export const RiskPage: React.FC = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
+
+  const [messageApi, contextHolder] = message.useMessage();
 
   const { data: riskInfo } = useQuery({
     queryKey: ['getRiskInfo', id],
@@ -28,6 +30,8 @@ export const RiskPage: React.FC = () => {
     queryFn: () => gigachatServiceMock.getRiskInfoSummary(String(id)),
     retry: false,
   });
+
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
 
   const tableDataSource: {name: string; scorePoints: number; value: string | number}[] = useMemo(() => riskInfo ?
     [
@@ -46,6 +50,7 @@ export const RiskPage: React.FC = () => {
 
   return (
     <div className="sb-risk-page">
+      {contextHolder}
       <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
         <p className="sb-risk-page__title">
           Расчет уровня риска
@@ -68,9 +73,35 @@ export const RiskPage: React.FC = () => {
             <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
               <GigachatMessage label="Оценка риска:" message={riskInfoSummary?.answer || ''}/>
               <RiskScore riskScore={totalRiskScore}/>
+              <Button type="primary" size="large" onClick={() => setIsConfirmModalOpen(true)}><CheckCircleOutlined/>Одобрить заявку</Button>
             </Space>
           </Col>
         </Row>
       </Space>
+
+      <Modal open={isConfirmModalOpen} footer={null} onCancel={() => setIsConfirmModalOpen(false)}>
+        <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+        Вы собираетесь одобрить заявку. Продолжить?
+          <Row>
+            <Col span={4}>
+              <Button
+                onClick={() => {
+                  messageApi
+                      .success('Заявка одобрена успешно!');
+                  setIsConfirmModalOpen(false);
+                }}
+                type="primary"
+              >
+            Да
+              </Button>
+            </Col>
+            <Col span={4}>
+              <Button danger onClick={() => {setIsConfirmModalOpen(false);}}>
+            Нет
+              </Button>
+            </Col>
+          </Row>
+        </Space>
+      </Modal>
     </div>);
 };

@@ -13,7 +13,7 @@ export const GigachatMessage: React.FC<GigachatMessageProps> = ({ label, message
   useEffect(() => {
     const typed = new Typed(textField.current, {
       strings: [message || ''],
-      typeSpeed: 20,
+      typeSpeed: 15,
       cursorChar: '',
     });
 

@@ -34,6 +34,12 @@ export const profileServiceMock = {
       resolve(profileMockData[0]);
     }, 500);
   }),
+
+  rejectProfile: (profileId: string) => new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(null);
+    }, 2300);
+  }),
 };
 
 export const profileService = {

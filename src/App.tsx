@@ -23,12 +23,10 @@ function App() {
               borderRadius: 5,
             }, components: {
               Form: {
-              // verticalLabelPadding: '0 8px 8px',
                 verticalLabelMargin: '0 8px 8px',
               },
               InputNumber: {
                 controlWidth: 200,
-                // paddingInline: 40,
               },
               Progress: {
                 defaultColor: '#f6650a',
