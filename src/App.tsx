@@ -30,6 +30,9 @@ function App() {
                 controlWidth: 200,
                 // paddingInline: 40,
               },
+              Progress: {
+                defaultColor: '#f6650a',
+              },
             },
           }}>
           <BrowserRouter>
