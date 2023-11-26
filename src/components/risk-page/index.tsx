@@ -58,7 +58,7 @@ export const RiskPage: React.FC = () => {
         <Button
           size="large"
           onClick={() => {
-            navigate(`/profile/${id}`);
+            navigate(`/${id}`);
           }}
         >
           <ArrowLeftOutlined />

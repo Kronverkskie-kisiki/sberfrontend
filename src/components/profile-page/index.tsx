@@ -47,7 +47,7 @@ export const ProfilePage: React.FC = () => {
           className="sb-profile-page__back-button"
           size="large"
           onClick={() => {
-            navigate(`/profile`);
+            navigate(`/`);
           }}
         >
           <ArrowLeftOutlined />
