@@ -6,8 +6,9 @@ import { ProfileForm } from '../profile-form';
 import './profile-page.scss';
 import { gigachatServiceMock } from '../../service/gigachat-service';
 import { GigachatMessage } from '../gigachat-message';
-import { Button, Col, Form, Input, message, Modal, Row } from 'antd';
+import { Button, Col, Form, Input, message, Modal, Row, Space } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 export const ProfilePage: React.FC = () => {
   const { id } = useParams();
@@ -38,30 +39,42 @@ export const ProfilePage: React.FC = () => {
   return (
     <div className="sb-profile-page">
       {contextHolder}
-      <p className="sb-profile-page__title">
+      <Space direction="vertical" size="middle" style={{ display: 'flex' }}>
+        <p className="sb-profile-page__title">
         Анкета участника сделки
-      </p>
-      <Row gutter={16}>
-        <Col span={16}>
-          <ProfileForm {...profileInfo}/>
-        </Col>
-        <Col span={7}>
-          <GigachatMessage label="Анализ соц. сетей:" message={profileSummary?.answer || ''}/>
-        </Col>
-      </Row>
+        </p>
+        <Button
+          className="sb-profile-page__back-button"
+          size="large"
+          onClick={() => {
+            navigate(`/profile`);
+          }}
+        >
+          <ArrowLeftOutlined />
+        К списку заявок
+        </Button>
+        <Row gutter={16}>
+          <Col span={16}>
+            <ProfileForm {...profileInfo}/>
+          </Col>
+          <Col span={7}>
+            <GigachatMessage label="Анализ соц. сетей:" message={profileSummary?.answer || ''}/>
+          </Col>
+        </Row>
 
-      <Row>
-        <Col span={8}>
-          <Button size="large" danger onClick={() => {setIsCloseModalOpen(true);}}>Отправить на доработку</Button>
-        </Col>
-        <Col span={8} offset={4}>
-          <Button
-            size="large"
-            onClick={() => {
-              navigate(`/risk/${id}`);
-            }}>Расчет рисков</Button>
-        </Col>
-      </Row>
+        <Row>
+          <Col span={8}>
+            <Button size="large" danger onClick={() => {setIsCloseModalOpen(true);}}>Отправить на доработку</Button>
+          </Col>
+          <Col span={8} offset={4}>
+            <Button
+              size="large"
+              onClick={() => {
+                navigate(`/risk/${id}`);
+              }}>Расчет рисков</Button>
+          </Col>
+        </Row>
+      </Space>
 
       <Modal title="Подтвердите действие" open={isCloseModalOpen} footer={null} onCancel={() => {setIsCloseModalOpen(false);}}>
         <Form layout="vertical">

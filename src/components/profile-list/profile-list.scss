@@ -1,0 +1,16 @@
+.sb-profile-list {
+
+  &__element {
+    cursor: pointer;
+  }
+
+  &__element:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.sb-profile-list-element {
+  &__client-info {
+    border-spacing: 2rem 0;
+  }
+}

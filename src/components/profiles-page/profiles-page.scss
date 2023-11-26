@@ -1,16 +1,10 @@
-.sb-profile-page {
-
+.sb-profiles-page {
   padding: 2rem;
-
 
   &__title {
     font-weight: var(--font-weight-bold);
     font-size: var(--font-size-large);
     margin-bottom: 2rem;
     color: var(--color-green-5);
-  }
-
-  &__back-button {
-    margin-bottom: 1rem;
   }
 }
