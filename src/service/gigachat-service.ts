@@ -62,5 +62,12 @@ export const gigachatService = {
   getRiskInfoSummary: (riskInfoId: string) =>
     fetchServer<GigachatResponse>('/api/loan_rating', 'POST', {}),
   getProfileSummary: (userId: string) =>
-    fetchServer<GigachatResponse>('/api/vk_analisis', 'POST', { userId }, { 'Access-Control-Allow-Origin': '*', 'Accept': 'application/json', 'Content-Type': 'application/json' }),
+    fetch('/api/vk_analisis', {
+      method: 'POST', headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: JSON.stringify({ userId }),
+    }).then((r) => r.json() as any as GigachatResponse),
 };
